@@ -57,7 +57,7 @@ Predictive analytics project to identify employees at risk of leaving TechNova S
 4. Run all cells sequentially
 
 ## Author
-[Your Name] - [Your Student ID]
+Enrique Fernández Contreras - c0948131
 
 ## Date
 October 2025
