@@ -2,7 +2,7 @@
 
 Machine learning project to predict Airbnb listing prices in New York City using regression models, AWS S3 for data storage, and MLflow for experiment tracking.
 
-## 📊 Project Overview
+## Project Overview
 
 This project implements an end-to-end ML pipeline to predict nightly prices for Airbnb listings in NYC. The model helps hosts set competitive prices and provides insights into factors that influence pricing.
 
@@ -16,7 +16,7 @@ This project implements an end-to-end ML pipeline to predict nightly prices for 
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 ```
 Data Storage (AWS S3)
     ↓
@@ -51,7 +51,7 @@ airbnb-price-prediction/
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 - Python 3.8+
@@ -93,7 +93,7 @@ jupyter notebook notebooks/airbnb_ml_pipeline.ipynb
 
 ---
 
-## 🔬 Methodology
+## Methodology
 
 ### 1. Exploratory Data Analysis (EDA)
 - Analyzed 48,895 listings across 5 NYC boroughs
@@ -138,7 +138,7 @@ Trained and compared 4 regression algorithms:
 
 ---
 
-## 📊 Key Findings
+## Key Findings
 
 ### Top Predictive Features
 1. **room_type_Private room** (24.11% importance)
@@ -169,7 +169,7 @@ Trained and compared 4 regression algorithms:
 
 ---
 
-## ⚠️ Model Limitations
+## Model Limitations
 
 1. **Luxury segment:** Poor performance on listings >$300 (underpredicts)
 2. **Heteroscedasticity:** Error variance increases with price
@@ -179,7 +179,7 @@ Trained and compared 4 regression algorithms:
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
 ### Feature Engineering
 - Add amenities count (WiFi, kitchen, AC, parking)
@@ -202,7 +202,7 @@ Trained and compared 4 regression algorithms:
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Python 3.10**
 - **Data Processing:** Pandas, NumPy
@@ -214,11 +214,7 @@ Trained and compared 4 regression algorithms:
 
 ---
 
-## 📸 Screenshots
-
-### MLflow Experiment Tracking
-![MLflow Experiments](screenshots/mlflow_experiments.png)
-*All 4 models tracked with parameters, metrics, and artifacts*
+## Screenshots
 
 ### Model Performance Comparison
 ![Model Comparison](screenshots/model_comparison.png)
@@ -230,30 +226,8 @@ Trained and compared 4 regression algorithms:
 
 ---
 
-## 📚 References
-
-- Dataset: [AB_NYC_2019 on Kaggle](https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data)
-- MLflow Documentation: [mlflow.org](https://mlflow.org/)
-- XGBoost: [xgboost.readthedocs.io](https://xgboost.readthedocs.io/)
-
----
-
 ## 👤 Author
 
-**Your Name**
-Data Science Student | University Name
-[GitHub](https://github.com/yourusername) | [LinkedIn](https://linkedin.com/in/yourprofile)
+Student: **Enrique Fernández C**
 
----
 
-## 📄 License
-
-This project is for educational purposes as part of coursework at [University Name].
-
----
-
-## 🙏 Acknowledgments
-
-- Professor [Name] for project guidance
-- Airbnb for open data
-- Anthropic Claude for development assistance
