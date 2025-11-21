@@ -9,10 +9,10 @@ This project implements an end-to-end ML pipeline to predict nightly prices for 
 **Dataset:** AB_NYC_2019 (48,895 listings with 16 features)
 
 **Best Model Performance:**
-- **Algorithm:** XGBoost Regressor
-- **Test R²:** 0.474 (explains 47.4% of price variance)
-- **Test MAE:** $48.18 (average prediction error)
-- **Accuracy:** ~71% of predictions within ±$50
+- **Algorithm:** XGBoost Regressor.
+- **Test R²:** 0.474 (explains 47.4% of price variance).
+- **Test MAE:** $48.11 (average prediction error).
+- **Accuracy:** 71% of predictions within $50.
 
 ---
 
@@ -33,7 +33,7 @@ Model Registry (Production)
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 ```
 airbnb-price-prediction/
 ├── README.md                          # Project documentation
@@ -49,6 +49,9 @@ airbnb-price-prediction/
     ├── mlflow_model_registry.png     # Registered model
     ├── model_comparison.png          # Model performance comparison
     └── feature_importance.png        # Top features visualization
+    └── categorical_analysis.png      # rice distribution by borough and room type
+    └── price_distribution.png        # Listing price distribution and outliers
+
 ```
 
 ---
@@ -57,14 +60,14 @@ airbnb-price-prediction/
 
 ### Prerequisites
 - Python 3.8+
-- AWS Account (Free Tier sufficient)
+- AWS Account (Free Tier)
 - Git
 
 ### Installation
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/airbnb-price-prediction.git
+git clone https://github.com/jenriquito/airbnb-price-prediction.git
 cd airbnb-price-prediction
 ```
 
@@ -97,7 +100,7 @@ jupyter notebook notebooks/Airnb_ML_Pipeline.ipynb
 ```bash
 cd notebooks
 mlflow ui
-# Open http://127.0.0.1:5000 in your browser
+# Open http://localhost:5000 in your browser
 ```
 
 ---
@@ -123,9 +126,9 @@ mlflow ui
   - `neighbourhood_simplified` (reduced from 221 to 25 categories)
 
 ### 3. Feature Engineering & Encoding
-- **One-hot encoding** for categorical variables (7 features → 42 columns)
-- **StandardScaler** for numerical features (fit on train only)
-- Final feature set: 51 features
+- **One-hot encoding** for categorical variables (7 features → 42 columns).
+- **StandardScaler** for numerical features (fit on train only).
+- Final feature set: 51 features.
 
 ### 4. Model Development
 Trained and compared 4 regression algorithms:
@@ -133,17 +136,17 @@ Trained and compared 4 regression algorithms:
 | Model | Test R² | Test MAE | Test RMSE | Training Time |
 |-------|---------|----------|-----------|---------------|
 | Linear Regression | 0.377 | $54.93 | $93.23 | 3.2s |
-| Ridge Regression | 0.377 | $54.90 | $93.24 | 2.4s |
+| Ridge Regression | 0.376 | $54.90 | $93.24 | 2.4s |
 | Random Forest | 0.468 | $48.18 | $86.15 | 12.4s |
-| **XGBoost** ✅ | **0.474** | **$48.18** | **$85.67** | **3.6s** |
+| **XGBoost**  | **0.474** | **$48.11** | **$85.67** | **3.6s** |
 
 **Winner:** XGBoost - Best performance with acceptable training time and minimal overfitting.
 
 ### 5. MLflow Experiment Tracking
-- Logged parameters, metrics, and artifacts for all models
-- Created visualizations (prediction plots, residuals)
-- Registered best model in MLflow Model Registry as "airbnb-price-predictor"
-- All experiments tracked and reproducible
+- Logged parameters, metrics, and artifacts for all models.
+- Created visualizations (prediction plots, residuals).
+- Registered best model in MLflow Model Registry as "airbnb-price-predictor".
+- All experiments tracked and reproducible.
 
 ---
 
@@ -174,31 +177,25 @@ Trained and compared 4 regression algorithms:
 ## Key Findings
 
 ### Top Predictive Features
-1. **room_type_Private room** (24.11% importance)
-2. **room_type_Shared room** (11.22% importance)
-3. **neighbourhood_simplified_Midtown** (6.20% importance)
-4. **distance_to_center** (3.97% importance)
-5. **host_experience_professional** (3.31% importance)
+1. **room_type_Private room** (22.47% importance)
+2. **room_type_Shared room** (10.13% importance)
+3. **review_popularity_new** (6.91% importance)
+4. **neighbourhood_simplified_Midtown** (6.09% importance)
+5. **distance_to_center** (3.56% importance)
 
 ### Model Performance by Segment
 
 **By Borough:**
-- Best: Queens (MAE: $32.19)
-- Worst: Staten Island (MAE: $62.88)
+- Best: Queens (MAE: $27.61)
+- Worst: Staten Island (MAE: $61.41)
 
 **By Room Type:**
 - Best: Private room (MAE: $27.62)
-- Worst: Entire home/apt (MAE: $67.85)
+- Worst: Entire home/apt (MAE: $67.52)
 
 **By Price Range:**
-- Best: Budget $10-75 (MAE: $23.01)
-- Worst: Luxury $301+ (MAE: $219.40)
-
-### Business Insights
-1. **Location matters:** Manhattan listings cost 2.3× more than Bronx
-2. **Room type is key:** Entire homes cost 2.4× more than private rooms
-3. **Distance impact:** Each km from Times Square reduces price by ~$8
-4. **Professional hosts:** Hosts with multiple listings charge 15% premium
+- Best: Budget $10-75 (MAE: $22.92)
+- Worst: Luxury $301+ (MAE: $217.78)
 
 ---
 
@@ -248,21 +245,7 @@ Trained and compared 4 regression algorithms:
 
 ---
 
-## 👤 Author
+## Author
 
 **Enrique Fernández C**  
-Data Science Student
-
----
-
-## 🙏 Acknowledgments
-
-- Airbnb for providing the open dataset
-- AWS for cloud infrastructure
-- MLflow for experiment tracking capabilities
-
----
-
-## 📄 License
-
-This project is for educational purposes as part of a university assignment.
+AI/ML Student
