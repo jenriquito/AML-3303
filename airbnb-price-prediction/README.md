@@ -10,9 +10,9 @@ This project implements an end-to-end ML pipeline to predict nightly prices for 
 
 **Best Model Performance:**
 - **Algorithm:** XGBoost Regressor
-- **Test R²:** 0.469 (explains 46.92% of price variance)
-- **Test MAE:** $48.30 (average prediction error)
-- **Accuracy:** 70.9% of predictions within ±$50
+- **Test R²:** 0.474 (explains 47.4% of price variance)
+- **Test MAE:** $48.18 (average prediction error)
+- **Accuracy:** ~71% of predictions within ±$50
 
 ---
 
@@ -40,11 +40,13 @@ airbnb-price-prediction/
 ├── requirements.txt                   # Python dependencies
 ├── .gitignore                         # Git ignore rules
 ├── notebooks/
-│   └── airbnb_ml_pipeline.ipynb      # Complete ML pipeline
+│   └── Airnb_ML_Pipeline.ipynb       # Complete ML pipeline
 ├── data/
 │   └── Ab_Nyc2019_Data_Dictionary.docx
 └── screenshots/
-    ├── mlflow_experiments.png        # MLflow UI experiments view
+    ├── mlflow_experiments.png        # MLflow experiment runs
+    ├── mlflow_metrics.png            # Metrics comparison
+    ├── mlflow_model_registry.png     # Registered model
     ├── model_comparison.png          # Model performance comparison
     └── feature_importance.png        # Top features visualization
 ```
@@ -88,7 +90,14 @@ export AWS_DEFAULT_REGION="us-east-1"
 
 5. **Run the notebook**
 ```bash
-jupyter notebook notebooks/airbnb_ml_pipeline.ipynb
+jupyter notebook notebooks/Airnb_ML_Pipeline.ipynb
+```
+
+6. **View MLflow experiments**
+```bash
+cd notebooks
+mlflow ui
+# Open http://127.0.0.1:5000 in your browser
 ```
 
 ---
@@ -123,18 +132,42 @@ Trained and compared 4 regression algorithms:
 
 | Model | Test R² | Test MAE | Test RMSE | Training Time |
 |-------|---------|----------|-----------|---------------|
-| Linear Regression | 0.377 | $54.93 | $93.23 | 0.43s |
-| Ridge Regression | 0.377 | $54.89 | $93.24 | 0.05s |
-| Random Forest | 0.467 | $48.19 | $86.20 | 35.27s |
-| **XGBoost** ✅ | **0.469** | **$48.30** | **$86.06** | **3.37s** |
+| Linear Regression | 0.377 | $54.93 | $93.23 | 3.2s |
+| Ridge Regression | 0.377 | $54.90 | $93.24 | 2.4s |
+| Random Forest | 0.468 | $48.18 | $86.15 | 12.4s |
+| **XGBoost** ✅ | **0.474** | **$48.18** | **$85.67** | **3.6s** |
 
 **Winner:** XGBoost - Best performance with acceptable training time and minimal overfitting.
 
 ### 5. MLflow Experiment Tracking
 - Logged parameters, metrics, and artifacts for all models
 - Created visualizations (prediction plots, residuals)
-- Registered best model in MLflow Model Registry
-- Transitioned to "Production" stage
+- Registered best model in MLflow Model Registry as "airbnb-price-predictor"
+- All experiments tracked and reproducible
+
+---
+
+## Screenshots
+
+### MLflow Experiment Tracking
+![MLflow Experiments](screenshots/mlflow_experiments.png)
+*All 4 models tracked with parameters, metrics, and training duration*
+
+### MLflow Metrics Comparison
+![MLflow Metrics](screenshots/mlflow_metrics.png)
+*Side-by-side comparison of R², MAE, and RMSE across all models*
+
+### MLflow Model Registry
+![Model Registry](screenshots/mlflow_model_registry.png)
+*Best model (XGBoost) registered for production deployment*
+
+### Model Performance Comparison
+![Model Comparison](screenshots/model_comparison.png)
+*XGBoost achieves best R² score of 0.474*
+
+### Feature Importance Analysis
+![Feature Importance](screenshots/feature_importance.png)
+*Room type and location are top predictors*
 
 ---
 
@@ -204,30 +237,32 @@ Trained and compared 4 regression algorithms:
 
 ## Technologies Used
 
-- **Python 3.10**
+- **Python 3.11**
 - **Data Processing:** Pandas, NumPy
 - **Machine Learning:** Scikit-learn, XGBoost
 - **Visualization:** Matplotlib, Seaborn
 - **Cloud Storage:** AWS S3 (boto3)
 - **Experiment Tracking:** MLflow
 - **Version Control:** Git, GitHub
-
----
-
-## Screenshots
-
-### Model Performance Comparison
-![Model Comparison](screenshots/model_comparison.png)
-*XGBoost achieves best R² score of 0.469*
-
-### Feature Importance
-![Feature Importance](screenshots/feature_importance.png)
-*Room type and location are top predictors*
+- **Development:** Jupyter Notebook
 
 ---
 
 ## 👤 Author
 
-Student: **Enrique Fernández C**
+**Enrique Fernández C**  
+Data Science Student
 
+---
 
+## 🙏 Acknowledgments
+
+- Airbnb for providing the open dataset
+- AWS for cloud infrastructure
+- MLflow for experiment tracking capabilities
+
+---
+
+## 📄 License
+
+This project is for educational purposes as part of a university assignment.
